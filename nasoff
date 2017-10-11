@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh admin@nas "echo '271828' | sudo -S poweroff"

@@ -1,0 +1,2 @@
+#!/bin/bash
+wakeonlan bc:5f:f4:76:f2:b4
