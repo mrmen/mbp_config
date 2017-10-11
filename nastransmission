@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh admin@nas "transmission-daemon"
