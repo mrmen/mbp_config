@@ -1,5 +1,6 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 #-*- coding:utf-8 -*-
+
 import matplotlib.pyplot as plt
 import sys
 
@@ -23,9 +24,10 @@ for _ in range(nombreComps):
     res.append([0,0,0,0])
 for line in resultats.readlines():
     L = line.split(";")[1:]
-    for index in range(4):
+    for index in range(nombreComps):
         res[index][int(L[index])] += 1
 resultats.close()
+
 
 niveaux = "Insuffisant", "Fragile", "Satisfaisant", "Très satisfaisant"
 couleurs = ["lightcoral", "gold", "yellowgreen", "lightskyblue"]

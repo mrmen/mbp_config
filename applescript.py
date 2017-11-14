@@ -1,9 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import subprocess
 
-def asrun(ascript):
-  "Run the given AppleScript and return the standard output and error."
+def asrun(  "Run the given AppleScript and return the standard output and error."
 
   osa = subprocess.Popen(['osascript', '-'],
                          stdin=subprocess.PIPE,
@@ -15,3 +14,4 @@ def asquote(astr):
   
   astr = astr.replace('"', '" & quote & "')
   return '"{}"'.format(astr)
+

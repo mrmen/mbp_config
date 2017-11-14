@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from applescript import asrun, asquote
 import sys
 import time
