@@ -4,8 +4,19 @@
 import matplotlib.pyplot as plt
 import sys
 
+def usage():
+    print('''Usage :
+comp2chart.py ds-name class-name
+
+Files eleves.csv and comp.csv must be present.
+The program should return png files according to previous files.
+''')
+    sys.exit(1)
+
+    
 if len(sys.argv)<3:
-    sys.exit("Not enough argument.")
+    usage()
+
 ds=sys.argv[1]
 classe=sys.argv[2]
 
@@ -21,17 +32,29 @@ comps.close()
 
 res = []
 for _ in range(nombreComps):
-    res.append([0,0,0,0])
+    res.append([0,0,0,0,0])
 for line in resultats.readlines():
-    L = line.split(";")[1:]
+    temp = line
+    temp = temp.replace("\n", "").replace("	", ";").replace("\"", "").replace("\r", "").replace("	", ";")
+    temp = temp.replace("Maîtrise insuffisante", "0")
+    temp = temp.replace("Maîtrise fragile", "1")
+    temp = temp.replace("Maîtrise satisfaisante", "2")
+    temp = temp.replace("Très bonne maîtrise", "3")
+    temp = temp.replace("Absent", "4")
+    temp = temp.replace("Non évalué", "4")
+    if "X;X" in temp:
+       continue
+    if "Élève" in temp:
+       continue
+    L = temp.split(";")[1:]
     for index in range(nombreComps):
         res[index][int(L[index])] += 1
 resultats.close()
 
 
-niveaux = "Insuffisant", "Fragile", "Satisfaisant", "Très satisfaisant"
-couleurs = ["lightcoral", "gold", "yellowgreen", "lightskyblue"]
-explode = (0, 0, 0, 0)
+niveaux = "Insuffisant", "Fragile", "Satisfaisant", "Très satisfaisant", "Néant"
+couleurs = ["lightcoral", "gold", "yellowgreen", "lightskyblue", "gray"]
+explode = (0, 0, 0, 0, 0)
 
 for index in range(nombreComps):
     plt.pie(res[index], explode=explode, labels=niveaux, colors=couleurs, 
