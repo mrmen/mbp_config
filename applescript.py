@@ -2,7 +2,7 @@
 
 import subprocess
 
-def asrun(  "Run the given AppleScript and return the standard output and error."
+def asrun(ascript):
 
   osa = subprocess.Popen(['osascript', '-'],
                          stdin=subprocess.PIPE,
